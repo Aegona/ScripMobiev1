@@ -297,19 +297,19 @@ game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
     }
 )
 
-local blah =
-    Main.Toggle(
-    {
-        Text = "Auto Haki Beta",
-        Callback = function(Value)
-            _G.AutoSetspaw = Value
-            while _G.AutoSetspaw do
-                wait(.1)
-local string_1 = "SetSpawnPoint";
-								local Target = game:GetService("ReplicatedStorage").Remotes["CommF_"];
-								Target:InvokeServer(string_1);
-        Enabled = false
-            end
-    end
-    }
-)
+
+
+    
+     
+      
+     
+         
+ 
+
+						
+								
+
+            
+  
+    
+
