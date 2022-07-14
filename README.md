@@ -1,5 +1,30 @@
 ---- script byAegonaChannel
 
+local ToggleAEGONA = Instance.new("ScreenGui")
+local ToogleA = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+
+ToggleAEGONA.Name = "ToggleAEGONA"
+ToggleAEGONA.Parent = game.CoreGui
+ToggleAEGONA.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ToogleA.Name = "ToogleA"
+ToogleA.Parent = ToggleAEGONA
+ToogleA.BackgroundColor3 = Color3.fromRGB(62, 147, 9)
+ToogleA.Position = UDim2.new(0.194303796, 0, 0.480566978, 0)
+ToogleA.Size = UDim2.new(0, 88, 0, 45)
+ToogleA.Font = Enum.Font.Ubuntu
+ToogleA.Text = "AEGONAHUB"
+ToogleA.TextColor3 = Color3.fromRGB(0, 0, 0)
+ToogleA.TextScaled = true
+ToogleA.TextSize = 14.000
+ToogleA.TextWrapped = true
+ToogleA.MouseButton1Click:Connect(function()
+	game.CoreGui:FindFirstChild("z AEGONA X HUB z").Enabled = not  game.CoreGui:FindFirstChild("z AEGONA X HUB z").Enabled
+end)
+
+UICorner.Parent = ToogleA
+
 
 function CheckQuest()
    local Lv =  game.Players.LocalPlayer.Data.Level.Value
