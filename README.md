@@ -1,315 +1,248 @@
 ---- script byAegonaChannel
 
 
-local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/NiceBBMBThai12/NBTScript/main/Gui%20Th%20Edit%20free%2001"))()
-
-local XX =
-    Material.Load(
-    {
-        Title = "<< AEGONA HUB >>",
-        Style = 1,
-        SizeX = 400,
-        SizeY = 185,
-        Theme = "Ben10"
-    }
-)
-
-
-local Main =
-    XX.New(
-    {
-        Title = "Auto Farm"
-    }
-)
-
-
-local tel =
-    XX.New(
-    {
-        Title = "-- Teleport --"
-    }
-)
-
-local shop =
-    XX.New(
-    {
-        Title = "-- SHOP --"
-    }
-)
-
-local raid =
-    XX.New(
-    {
-        Title = "-- RAID --"
-    }
-)
-local setting =
-    XX.New(
-    {
-        Title = "Setting"
-    }
-)
-
-local D =
-    Main.Toggle(
-    {
-        Text = "-- Auto Farm Box --",
-        Callback = function(Value)
-            _G.AutoFarm = Value
-            while _G.AutoFarm do
-             while  wait(0.1) do
-    for i,v in pairs(game:GetService("Workspace"):GetDescendants()) do
-    if v.Name == "TouchInterest" then
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Parent.CFrame
-        game.Players.LocalPlayer.Character.Humanoid.Health = 0
-        wait(.1)
+function CheckQuest()
+   local Lv =  game.Players.LocalPlayer.Data.Level.Value
+   if Lv == 1 or Lv <= 9 then
+       Ms = "Bandit [Lv. 5]"
+       CQ = CFrame.new(1059.838623046875, 16.516624450683594, 1545.941162109375)
+       CM = CFrame.new(1177.2108154296875, 16.43285369873047, 1616.587646484375)
+       NQ = "BanditQuest1"
+       NM = "Bandit"
+       LQ = 1
+   elseif Lv == 10 or Lv <= 14 then
+       Ms = "Monkey [Lv. 14]"
+       CQ = CFrame.new(-1601.58642578125, 36.852134704589844, 153.4748077392578)
+       CM = CFrame.new(-1447.85400390625, 22.852529525756836, 224.74119567871094)
+       NQ = "JungleQuest"
+       NM = "Monkey"
+       LQ = 1
+            elseif Lv == 15 or Lv <= 29 then
+       Ms = "Gorilla [Lv. 20]"
+       CQ = CFrame.new(-1601.58642578125, 36.852134704589844, 153.4748077392578)
+       CM = CFrame.new(-1226.2562255859375, 6.279374599456787, -490.89447021484375)
+       NQ = "JungleQuest"
+       NM = "Gorilla"
+       LQ = 2
+        elseif Lv == 30 or Lv <= 2298 then
+       Ms = "Pirate [Lv. 35]"
+       CQ = CFrame.new(-1139.8831787109375, 4.752061367034912, 3824.586181640625)
+       CM = CFrame.new(-1210.2435302734375, 4.752061367034912, 3918.926513671875)
+       NQ = "BuggyQuest1"
+       NM = "Pirate"
+       LQ = 1
+               elseif Lv == 2299 or Lv <= 2300 then
+       Ms = "Head Baker [Lv. 2275]"
+       CQ = CFrame.new(-1924.693115234375, 37.82392501831055, -12850.0869140625)
+       CM = CFrame.new(-2217.271484375, 53.528297424316406, -12865.2177734375)
+       NQ = "CakeQuest2"
+       NM = "Head Baker"
+       LQ = 2
     end
-        Enabled = false
 end
-end
-end
-end
-    }
-)
 
-local blah =
-    setting.Button(
-    {
-        Text = "Joim Maren",
-        Callback = function(Value)
 
-local args = {
-    [1] = "SetTeam",
-    [2] = "Marines"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/zxciaz/VenyxUI/main/Reuploaded"))() --someone reuploaded it so I put it in place of the original back up so guy can get free credit.
+local venyx = library.new("z AEGONA X HUB z", 5013109572)
+
+-- themes
+local themes = {
+Background = Color3.fromRGB(24, 24, 24),
+Glow = Color3.fromRGB(0, 0, 0),
+Accent = Color3.fromRGB(10, 10, 10),
+LightContrast = Color3.fromRGB(20, 20, 20),
+DarkContrast = Color3.fromRGB(14, 14, 14),  
+TextColor = Color3.fromRGB(255, 255, 255)
 }
 
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 
-        end,
-        Enabled = false
-    }
-)
+local page = venyx:addPage("Main", 5012544693)
+local point = venyx:addPage("POINT", 5012544693)
+local section1 = page:addSection("Section 1")
+local section2 = page:addSection("Section 2")
+local point2 = point:addSection("-- POINT --")
 
-local blah =
-    setting.Button(
-    {
-        Text = "Joim Pirates",
-        Callback = function(Value)
+section1:addToggle("AutoFarm", nil, function(value)
+_G.Farm = true
+wait(.1)
+if focusLost then
+venyx:Notify("AutoFarm = True ", value)
+end
+end)
 
-local args = {
-    [1] = "SetTeam",
-    [2] = "Pirates"
-}
+section1:addButton("FIX Delete AutoFarm", function()
+_G.Farm = false
+wait(.1)
+game.Players.LocalPlayer.Character.Humanoid.Health = die
+end)
 
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+section1:addToggle("BringMob", nil, function(value)
+_G.BringMob = true
+wait(.1)
+if focusLost then
+venyx:Notify("BringMob = True ", value)
+end
+end)
 
-        end,
-        Enabled = false
-    }
-)
-
-local blah =
-    shop.Button(
-    {
-        Text = "RandomFruit",
-        Callback = function(Value)
-local args = {
-    [1] = "Cousin",
-    [2] = "Buy"
-}
-
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
- print("Random_fruit")
-        Enabled = false
+section1:addToggle("FastAttck", nil, function(value)
+local CombatFramework = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
+local Camera = require(game.ReplicatedStorage.Util.CameraShaker)
+Camera:Stop()
+coroutine.wrap(function()
+    game:GetService("RunService").Stepped:Connect(function()
+        if getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack then
+            getupvalues(CombatFramework)[2]['activeController'].timeToNextAttack = 0
+            getupvalues(CombatFramework)[2]['activeController'].hitboxMagnitude = 60
+            getupvalues(CombatFramework)[2]['activeController']:attack()
         end
-        }
-        )
-        
-        
-        local blah =
-    setting.Button(
-    {
-        Text = "Rejoin",
-        Callback = function(Value)
-local ts = game:GetService("TeleportService")
-      local p = game:GetService("Players").LocalPlayer
-ts:Teleport(game.PlaceId, p)
-        end,
-        Enabled = false
-        }
-        )
-        
-        
-       local blah =
-    raid.Toggle(
-    {
-        Text = "--> Kill Aura <--",
-        Callback = function(Value)
-            _G.Autokillaura = Value
-            while _G.Autokillaura do
-                wait(0.60)
-for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-    if v.ClassName == "Model" then
-        v.Humanoid.Health = die
-    end
-    end
-        Enabled = false
-            end
-    end
-    }
-) 
+    end)
+end)()
+end)
 
 
-       local blah =
-    raid.Toggle(
-    {
-        Text = "--> Auto Awakener <--",
-        Callback = function(Value)
-            _G.Autoawak = Value
-            while _G.Autoawak do
-                wait(0.60)
-local args = {
-    [1] = "Awakener",
-    [2] = "Check"
-}
+point2:addToggle("MELEE", nil, function(value)
+    while true do wait()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Melee",1)
+end
+end)
 
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-        Enabled = false
-            end
-    end
-    }
-) 
+point2:addToggle("DEFENSE", nil, function(value)
+    while true do wait()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Defense",1)
+end
+end)
 
-local blah =
-    tel.Button(
-    {
-        Text = "--> Cafa <--",
-        Callback = function(Value)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-385.7210693359375, 73.0458755493164, 299.86419677734375)
-wait(.1)
-game.Players.LocalPlayer.Character.Humanoid.Health = 0
-wait(.1)
+point2:addToggle("Sword", nil, function(value)
+    while true do wait()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Sword",1)
+end
+end)
+
+
+section2:addToggle("AutoSetSpawn", nil, function(value)
+    while wait(3) do
 local string_1 = "SetSpawnPoint";
 								local Target = game:GetService("ReplicatedStorage").Remotes["CommF_"];
 								Target:InvokeServer(string_1);
-                    Enabled = false
+end
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+CheckQuest()
+
+function TP(P)
+    NoClip = true
+    Distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+    if Distance < 10 then
+        Speed = 1000
+    elseif Distance < 170 then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
+        Speed = 400
+    elseif Distance < 1000 then
+        Speed = 400
+    elseif Distance >= 1000 then
+        Speed = 300
+    end
+    game:GetService("TweenService"):Create(
+        game.Players.LocalPlayer.Character.HumanoidRootPart,
+        TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+        {CFrame = P}
+    ):Play()
+    NoClip = false
+end
+
+spawn(function()
+    while task.wait() do
+        if _G.Farm then
+            if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                TP(CQ)
+                wait(3)
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NQ,LQ)
+            if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                    if v.Name == Ms then
+                        repeat task.wait()
+                        TP(v.HumanoidRootPart.CFrame * CFrame.new(0,20,0))
+                        until not _G.Farm
+                        end
+                    end
+                end
+            end    
+        end
+    end
+end)
+
+spawn(function()
+    pcall(function()
+        while task.wait() do
+            if _G.Farm then
+                if not game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
+                    local Noclip = Instance.new("BodyVelocity")
+                    Noclip.Name = "BodyClip"
+                    Noclip.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+                    Noclip.MaxForce = Vector3.new(100000,100000,100000)
+                    Noclip.Velocity = Vector3.new(0,0,0)
+                end
+            else
+                if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
+                end
             end
-    }
-) 
+        end
+    end)
+end)
 
-local blah =
-    tel.Button(
-    {
-        Text = "--> Raid <--",
-        Callback = function(Value)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6450.818359375, 249.55406188964844, -4494.82861328125)
-wait(.1)
-game.Players.LocalPlayer.Character.Humanoid.Health = 0
-wait(.1)
-local string_1 = "SetSpawnPoint";
-								local Target = game:GetService("ReplicatedStorage").Remotes["CommF_"];
-								Target:InvokeServer(string_1);
-                    Enabled = false
+
+
+spawn(function()
+    while task.wait() do
+        if _G.Farm then
+        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+            if v.Name == Ms then
+                v.HumanoidRootPart.CFrame = CM
+                v.HumanoidRootPart.CanCollide = false
+                sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                end
             end
-    }
-) 
+        end
+    end
+end)
 
-local blah =
-    setting.Button(
-    {
-        Text = "--> INVENTORY FRUIT <--",
-        Callback = function(Value)
-local args = {
-    [1] = "getInventoryFruits"
-}
 
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
 
-                    Enabled = false
+             while _G.BringMob do wait()
+            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                 for i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                    if v.Name == MON and v2.Name == MON then
+                        v2.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
+                        v2.HumanoidRootPart.CanCollide = false
+                           game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * Method
+                            sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                    end
+                 end
             end
-    }
-) 
-local blah =
-    setting.Button(
-    {
-        Text = "--> INVENTORY WEAPONS <--",
-        Callback = function(Value)
-local args = {
-    [1] = "getInventoryWeapons"
-}
-
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-
-                    Enabled = false
-            end
-    }
-) 
-
-local blah =
-    setting.Button(
-    {
-        Text = "--> SHOP FRUIT <--",
-        Callback = function(Value)
-local args = {
-    [1] = "GetFruits",
-    [2] = false
-}
-
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-
-                    end,
-                    Enabled = false
-    }
-) 
-
-local blah =
-    raid.Button(
-    {
-        Text = "--> Buy Chip Humanbuddha <--",
-        Callback = function(Value)
-local args = {
-    [1] = "RaidsNpc",
-    [2] = "Select",
-    [3] = "Human: Buddha"
-}
-
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-
-        end,
-        Enabled = false
-    }
-)
-
-local blah =
-    Main.Toggle(
-    {
-        Text = "Auto Haki Beta",
-        Callback = function(Value)
-            _G.AutoHaki = Value
-            while _G.AutoHaki do
-local args = {
-    [1] = "Buso"
-}
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-            end
-        end,
-        Enabled = false
-    }
-)
-
-
-
-    
-     
-      
-     
-         
- 
-
-						
-								
-
-            
-  
-    
-
+             end
